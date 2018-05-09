@@ -3,9 +3,9 @@
 #include <stdint.h>
 
 #define INFINITY 1001
-#define MAX 1000
+#define MAX 1300
  
-int *dijkstra(int G[MAX][MAX],int n,int startnode);
+int *dijkstra(int **G,int n,int startnode);
  
 int main()
 {
@@ -40,7 +40,7 @@ int main()
 	return 0;
 }
  
-int *dijkstra(int G[MAX][MAX],int n,int startnode)
+int *dijkstra(int **G,int n,int startnode)
 {
 	
 	int *distance = malloc(MAX*sizeof(int));
