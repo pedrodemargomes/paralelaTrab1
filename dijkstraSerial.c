@@ -46,8 +46,9 @@ int *dijkstra(int G[MAX][MAX],int n,int startnode)
 	int *distance = malloc(MAX*sizeof(int));
 
     int cost[MAX][MAX];
-    uint8_t visited[MAX],count,mindistance,nextnode,i,j;
-    
+    uint8_t visited[MAX];
+	int count,mindistance,nextnode,i,j;
+
     //pred[] stores the predecessor of each node
     //count gives the number of nodes seen so far
     //create the cost matrix
