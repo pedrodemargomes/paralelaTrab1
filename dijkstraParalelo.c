@@ -74,7 +74,8 @@ int *dijkstra(int G[MAX][MAX],int n,int startnode)
         mindistance=INFINITY;
         
         //nextnode gives the node at minimum distance
-        for(i=0;i<n;i++) {
+        // ======> Paralelizar encontrar vertice vizinho nao visitado de menor custo
+		for(i=0;i<n;i++) {
             if(distance[i]<mindistance&&!visited[i]) {
                 mindistance=distance[i];
                 nextnode=i;

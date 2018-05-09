@@ -11,4 +11,4 @@ dijkstraSerial: dijkstraSerial.c
 	$(CC) $< -o $@
 
 dijkstraParalelo: dijkstraParalelo.c
-	$(CC) $< -openmp -o $@
+	$(CC) $< -fopenmp -o $@
