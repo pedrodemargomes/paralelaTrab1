@@ -12,3 +12,9 @@ dijkstraSerial: dijkstraSerial.c
 
 dijkstraParalelo: dijkstraParalelo.c
 	$(CC) $< -fopenmp -o $@
+
+dijkstraSerialDebug: dijkstraSerial.c
+	$(CC)  dijkstraSerial.c -DDEBUG -o $@ 
+
+dijkstraParaleloDebug: dijkstraParalelo.c
+	$(CC)  dijkstraParalelo.c -DDEBUG -fopenmp -o $@

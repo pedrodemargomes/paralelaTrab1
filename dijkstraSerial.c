@@ -9,6 +9,7 @@ int cost[MAX][MAX];
 uint8_t visited[MAX];
 int G[MAX][MAX];
 int distance[MAX];
+int pred[MAX];
 
 void dijkstra(int n,int startnode);
 
@@ -39,7 +40,7 @@ int main()
 	#ifdef DEBUG
     printf("\nEnter the starting node:\n");
 	for(i=0;i<n;i++)
-		printf("Distancia do vertice %d: %d\n",i,d[i]);
+		printf("Distancia do vertice %d: %d\n",i,distance[i]);
 	#endif
 
 	return 0;
