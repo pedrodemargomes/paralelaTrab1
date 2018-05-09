@@ -3,13 +3,18 @@
 #include <stdint.h>
 
 #define INFINITY 1001
-#define MAX 1300
+#define MAX 10000
  
-int *dijkstra(int **G,int n,int startnode);
- 
+int cost[MAX][MAX];
+uint8_t visited[MAX];
+int G[MAX][MAX];
+int distance[MAX];
+
+void dijkstra(int n,int startnode);
+
 int main()
 {
-    int G[MAX][MAX],i,j,n,u;
+    int i,j,n,u;
 	#ifdef DEBUG
 	printf("Enter no. of vertices:");
 	#endif
@@ -29,7 +34,7 @@ int main()
 	#endif
 	
 	scanf("%d",&u);
-    int *d = dijkstra(G,n,u);
+    dijkstra(n,u);
     
 	#ifdef DEBUG
     printf("\nEnter the starting node:\n");
@@ -40,13 +45,8 @@ int main()
 	return 0;
 }
  
-int *dijkstra(int **G,int n,int startnode)
+void dijkstra(int n,int startnode)
 {
-	
-	int *distance = malloc(MAX*sizeof(int));
-
-    int cost[MAX][MAX];
-    uint8_t visited[MAX];
 	int count,mindistance,nextnode,i,j;
 
     //pred[] stores the predecessor of each node
@@ -93,5 +93,4 @@ int *dijkstra(int **G,int n,int startnode)
         count++;
     }
 	
-	return distance;
 }

@@ -1,16 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <omp.h>
 
 #define INFINITY 1001
-#define MAX 1000
+#define MAX 10000
  
-int *dijkstra(int G[MAX][MAX],int n,int startnode);
- 
+int cost[MAX][MAX];
+uint8_t visited[MAX];
+int G[MAX][MAX];
+int distance[MAX];
+
+void dijkstra(int n,int startnode);
+
 int main()
 {
-    int G[MAX][MAX],i,j,n,u;
+    int i,j,n,u;
 	#ifdef DEBUG
 	printf("Enter no. of vertices:");
 	#endif
@@ -30,7 +34,7 @@ int main()
 	#endif
 	
 	scanf("%d",&u);
-    int *d = dijkstra(G,n,u);
+    dijkstra(n,u);
     
 	#ifdef DEBUG
     printf("\nEnter the starting node:\n");
@@ -41,15 +45,10 @@ int main()
 	return 0;
 }
  
-int *dijkstra(int G[MAX][MAX],int n,int startnode)
+void dijkstra(int n,int startnode)
 {
-	
-	int *distance = malloc(MAX*sizeof(int));
-
-    int cost[MAX][MAX];
-    uint8_t visited[MAX];
 	int count,mindistance,nextnode,i,j;
-    
+
     //pred[] stores the predecessor of each node
     //count gives the number of nodes seen so far
     //create the cost matrix
@@ -71,30 +70,27 @@ int *dijkstra(int G[MAX][MAX],int n,int startnode)
     visited[startnode]=1;
     count=1;
     
-    while(count<n-1) {
+    while(count<n-1)
+    {
         mindistance=INFINITY;
         
         //nextnode gives the node at minimum distance
-        // ======> Paralelizar encontrar vertice vizinho nao visitado de menor custo
-		for(i=0;i<n;i++) {
-            if(distance[i]<mindistance&&!visited[i]) {
+        for(i=0;i<n;i++)
+            if(distance[i]<mindistance&&!visited[i])
+            {
                 mindistance=distance[i];
                 nextnode=i;
             }
-		}
             
-        //check if a better path exists through nextnode
-        visited[nextnode]=1;
-		#pragma omp parallel for
-        for(i=0;i<n;i++) {
-            if(!visited[i]) {
-                if(mindistance+cost[nextnode][i]<distance[i]) {
-                    distance[i]=mindistance+cost[nextnode][i];
-                }
-			}
-		}
+            //check if a better path exists through nextnode            
+            visited[nextnode]=1;
+            for(i=0;i<n;i++)
+                if(!visited[i])
+                    if(mindistance+cost[nextnode][i]<distance[i])
+                    {
+                        distance[i]=mindistance+cost[nextnode][i];
+                    }
         count++;
     }
 	
-	return distance;
 }
