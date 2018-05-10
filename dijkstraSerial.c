@@ -9,7 +9,6 @@ int cost[MAX][MAX];
 uint8_t visited[MAX];
 int G[MAX][MAX];
 int distance[MAX];
-int pred[MAX];
 
 void dijkstra(int n,int startnode);
 

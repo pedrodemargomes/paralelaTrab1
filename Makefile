@@ -2,10 +2,10 @@ FLAGS= -O3 -Wall
 CC=gcc
 
 
-all: dijkstraSerial dijkstraParalelo
+all: dijkstraSerial dijkstraParalelo dijkstraSerialDebug dijkstraParaleloDebug
 
 clean:
-	rm -f *.o dijkstraSerial dijkstraParalelo
+	rm -f *.o dijkstraSerial dijkstraParalelo dijkstraSerialDebug dijkstraParaleloDebug
 
 dijkstraSerial: dijkstraSerial.c
 	$(CC) $< -o $@
